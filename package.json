@@ -42,7 +42,6 @@
     "lint": "./node_modules/.bin/eslint --config .eslintrc.json tasks"
   },
   "dependencies": {
-    "@google-cloud/storage": "^1.2.1",
     "async": "^1.4.2",
     "autoprefixer-core": "^5.2.1",
     "bluebird": "^3.5.0",

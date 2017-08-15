@@ -1,7 +1,7 @@
 const path = require('path');
 const gulp = require('gulp');
 const rename = require('gulp-rename');
-const google = require('@google-cloud/storage');
+const gcPub = require('gulp-gcloud');
 const gutil = require('gulp-util');
 
 const { getConfigFor } = require('./utils.js');
@@ -17,16 +17,11 @@ function deployGcloud(config) {
     return;
   };
 
-  // set-up client here...
-  const gcs = google({
-    projectId: config.credentials.projectId,
-    keyFilename: config.credentials.keyFilename,
-  });
+  const metadata = {
+    cacheControl: 'max-age=315360000, no-transform, public',
+  };
 
-  const bucketName = config.credentials.params.Bucket;
-  const bucket = gcs.bucket(bucketName);
-
-  gutil.log(`${gutil.colors.magenta(`gs://${bucketName} => uploading`)} from ${config.assetsPath}`);
+  gutil.log(`${gutil.colors.magenta(`gs://${config.credentials.params.Bucket} => uploading from`)} ${config.assetsPath}`);
 
   return (
     gulp
@@ -40,18 +35,16 @@ function deployGcloud(config) {
           gutil.log(`${gutil.colors.yellow(`new`)}`, filepath);
         }),
       )
-      .pipe(function(filepath) {
-        gutil.log(`${gutil.colors.yellow(`upload`)}`, filepath);
-        // bucket.upload(
-        //   filepath,
-        //   {
-        //     destination: `${filepath}`,
-        //     public: true,
-        //     gzip: true,
-        //   },
-        // )
-        // .then(() => gutil.log(`${gutil.colors.dim('↑ Uploaded')} ${filepath}`));
-      })
+      .pipe(
+        gcPub({
+          bucket: config.credentials.params.Bucket,
+          keyFilename: config.credentials.keyFilename,
+          projectId: config.credentials.projectId,
+          base: config.dirname,
+          public: true,
+          metadata: metadata,
+        }),
+      )
   );
 };
 
