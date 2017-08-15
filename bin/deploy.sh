@@ -81,6 +81,8 @@ else
   exit 1
 fi
 
+gulp_config deploy-gcloud --env=$ENV
+
 gulp_config deploy-s3 --env=$ENV
 
 gulp_config rollbar-source-map --env=$ENV --rev=$COMMIT_ROLLBAR

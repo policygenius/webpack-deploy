@@ -73,7 +73,7 @@ var config = {
     }
   },
 
-  gcloud: {
+  googleCloud: {
     development: {
       credentials: googleCloudCredential,
       dirname: '/static',
