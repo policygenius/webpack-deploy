@@ -1,7 +1,7 @@
 const path = require('path');
 const gulp = require('gulp');
 const rename = require('gulp-rename');
-const gcPub = require('gulp-gcloud');
+const gcPub = require('gulp-gcloud-publish');
 const gutil = require('gulp-util');
 
 const { getConfigFor } = require('./utils.js');
