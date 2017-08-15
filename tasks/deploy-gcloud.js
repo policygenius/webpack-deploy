@@ -27,15 +27,6 @@ function deployGcloud(config) {
     gulp
       .src(config.assetsPath)
       .pipe(
-        rename(function(filepath) {
-          gutil.log(`${gutil.colors.yellow(`org`)}`, filepath);
-
-          filepath.dirname = path.join(config.dirname, filepath.dirname);
-
-          gutil.log(`${gutil.colors.yellow(`new`)}`, filepath);
-        }),
-      )
-      .pipe(
         gcPub({
           bucket: config.credentials.params.Bucket,
           keyFilename: config.credentials.keyFilename,
