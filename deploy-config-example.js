@@ -4,7 +4,15 @@ var s3Credential = {
   accessKeyId:     secrets.s3.accessKeyId,
   secretAccessKey: secrets.s3.secretAccessKey,
   params: {
-    Bucket:        'productboard-assets'
+    Bucket: 'productboard-assets'
+  }
+};
+
+var googleCloudCredential = {
+  projectId:   secrets.gcloud.projectId,
+  keyFilename: secrets.gcloud.keyFilename,
+  params: {
+    Bucket: 'cloudstorage-assets'
   }
 };
 
@@ -62,6 +70,29 @@ var config = {
       mainRevKey: 'app:current-revision',
       revTimestampKey: 'app-timestamp:%s',
       lastMajorTimestampKey: 'app:last-major-timestamp',
+    }
+  },
+
+  gcloud: {
+    development: {
+      credentials: googleCloudCredential,
+      dirname: '/static',
+      assetsPath: 'dist/assets/*',
+    },
+    staging: {
+      credentials: googleCloudCredential,
+      dirname: '/development/assets',
+      assetsPath: 'dist/assets/*',
+    },
+    me: {
+      credentials: googleCloudCredential,
+      dirname: '/development/assets',
+      assetsPath: 'dist/assets/*',
+    },
+    production: {
+      credentials: googleCloudCredential,
+      dirname: '/development/assets',
+      assetsPath: 'dist/assets/*',
     }
   },
 
@@ -132,4 +163,3 @@ var config = {
 };
 
 module.exports = config;
-

@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+var path = require('path');
+require(path.join(__dirname, '..', 'tasks', 'deploy-gcloud'));
+require('gulp').start('deploy-gcloud');

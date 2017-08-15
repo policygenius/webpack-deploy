@@ -1,14 +1,18 @@
 var secrets = {
   redis: {
     staging: {
-      auth_pass: ""
+      auth_pass: ''
     },
     me: {
-      auth_pass: ""
+      auth_pass: ''
     },
     production: {
-      auth_pass: ""
+      auth_pass: ''
     }
+  },
+  googleCloud: {
+    projectId:       '',
+    keyFilename:     '',
   },
   s3: {
     accessKeyId:     '',
