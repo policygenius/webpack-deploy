@@ -1,10 +1,10 @@
-# Webpack deploy utilities
+# Webpack Frontline (a fork of webpack-deploy)
 Collection of useful utilities for deploying (not only) Webpack apps
 
 ## Installation
 ```
 cd $YOUR_PROJECT
-npm install --save-dev productboard/webpack-deploy
+npm install --save-dev frontline/webpack-deploy
 ````
 
 ## Configuration
@@ -17,10 +17,12 @@ Build your Webpack project and run `deploy [environment]`.
 The script will automatically detect the build hash from `build.log`.
 
 ## Commands
-- `deploy`
-Batch command for quick deployment.
+- `deploy-frontline`
+Frontline server upload of build index.html
 - `deploy-s3`
 AWS S3 asset upload of build files.
+- `deploy-gcloud`
+Google Clould Storage asset upload of build files.
 - `deploy-redis`
 Redis deployment of revision index html file.
 - `activate-rev`
@@ -41,9 +43,6 @@ Gulp is great for building, Bash for running tasks.
 
 ## TODO
 - reupload/rewrite source map upload to fix activation of feature branches
-- build sample app in monolithic repo
-- forbid rev redeploy; force with --force
-- add example ala https://github.com/FormidableLabs/webpack-stats-plugin
 - list deployed feature branches
 - init: config copy
 - github PR deploy notification: https://developer.github.com/changes/2014-01-09-preview-the-new-deployments-api/

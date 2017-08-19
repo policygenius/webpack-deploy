@@ -1,33 +1,14 @@
 var secrets = {
-  redis: {
-    staging: {
-      auth_pass: ''
-    },
-    me: {
-      auth_pass: ''
-    },
-    production: {
-      auth_pass: ''
-    }
+  frontline: {
+    authToken: '',
   },
   googleCloud: {
-    projectId:       '',
-    keyFilename:     '',
+    projectId: '',
+    keyFilename: '',
   },
   s3: {
-    accessKeyId:     '',
+    accessKeyId: '',
     secretAccessKey: '',
-  },
-  rollbar: {
-    development: {
-      accessToken: '',
-    },
-    staging: {
-      accessToken: '',
-    },
-    production: {
-      accessToken: '',
-    },
   },
 };
 

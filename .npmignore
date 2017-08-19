@@ -7,3 +7,9 @@ npm-debug.log
 
 # ide, editors
 *.sublime-workspace
+
+# test build files
+/dist
+/secrets
+deploy-config.js
+secrets.js
