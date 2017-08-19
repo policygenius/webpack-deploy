@@ -33,6 +33,16 @@ const {
 // Deployment process tasks
 //
 async function deployFrontline(config, branch, rev) {
+
+  if (!config) {
+    gutil.log(
+      gutil.colors.red(`[Frontline:${env()}]`),
+      "You need to set up frontline in your deploy-config.js",
+    );
+
+    return false
+  }
+
   const indexHtml = fs.readFileSync(config.indexPath, 'utf8');
 
   if (env() === 'development') branch = 'development';
