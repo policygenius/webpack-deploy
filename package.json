@@ -1,44 +1,35 @@
 {
-  "name": "webpack-deploy",
-  "version": "0.13.1",
-  "description": "Collection of useful utilities for deploying (not only) Webpack apps",
+  "name": "webpack-frontline",
+  "version": "0.1.0",
+  "description": "A fork of webpack-deploy: A Collection of useful utilities for deploying (not only) Webpack apps",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/productboard/webpack-deploy.git"
+    "url": "git+https://github.com/policygenius/webpack-frontline.git"
   },
   "keywords": [
     "webpack",
     "deploy",
     "build",
     "s3",
-    "redis",
     "slack"
   ],
-  "author": "Tomas Ruzicka",
+  "author": "Tomas Ruzicka & Patrick Kim",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/productboard/webpack-deploy/issues"
+    "url": "https://github.com/policygenius/webpack-frontline/issues"
   },
-  "homepage": "https://github.com/productboard/webpack-deploy#readme",
+  "homepage": "https://github.com/policygenius/webpack-frontline#readme",
   "bin": {
-    "deploy": "bin/deploy.sh",
-    "activate-rev": "bin/activate-rev",
-    "current-rev": "bin/current-rev",
-    "list-revs": "bin/list-revs",
+    "deploy-frontline": "bin/deploy-frontline",
     "slack-notify": "bin/slack-notify",
-    "deploy-redis": "bin/deploy-redis",
     "deploy-s3": "bin/deploy-s3",
-    "deploy-gcloud": "bin/deploy-gcloud",
-    "rollbar-source-map": "bin/rollbar-source-map",
-    "git-deploy-tag": "bin/git-deploy-tag"
+    "deploy-gcloud": "bin/deploy-gcloud"
   },
   "scripts": {
     "build": "./node_modules/.bin/gulp clean && ./node_modules/.bin/gulp webpack",
-    "s3": "./node_modules/.bin/gulp deploy-s3 && ./node_modules/.bin/gulp rollbar-source-map --hash=`ls dist/assets/main-*.js 2>/dev/null | cut -f3 -d'/' | cut -f2 -d'-' | cut -f1 -d'.'`",
-    "gcloud": "./node_modules/.bin/gulp deploy-gcloud && ./node_modules/.bin/gulp rollbar-source-map --hash=`ls dist/assets/main-*.js 2>/dev/null | cut -f3 -d'/' | cut -f2 -d'-' | cut -f1 -d'.'`",
-    "redis": "./node_modules/.bin/gulp deploy-redis && ./node_modules/.bin/gulp activate-rev",
-    "deploy": "npm run s3 & npm run redis & wait",
+    "s3": "./node_modules/.bin/gulp deploy-s3",
+    "gcloud": "./node_modules/.bin/gulp deploy-gcloud",
     "lint": "./node_modules/.bin/eslint --config .eslintrc.json tasks"
   },
   "dependencies": {
