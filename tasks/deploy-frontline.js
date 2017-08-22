@@ -66,7 +66,7 @@ async function deployFrontline(config, branch, rev) {
       headers: {
         'Content-Type': 'application/json',
         'User-Agent': 'frontline-deployer',
-        'Authorization': `bearer ${config.authToken}`
+        'Authorization': `${config.authToken}`
       },
       json: payload,
     });
