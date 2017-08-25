@@ -52,7 +52,7 @@ async function deployFrontline(config, branch, rev) {
 
   if (env() === 'development') branch = 'development';
   if (argv.branch) branch = argv.branch
-  if (argv.rev) rev = argv.rev
+  if (argv.rev) rev = argv.rev.substring(0,8)
 
   gutil.log(
     gutil.colors.blue(`[Frontline:${env()}]`),
