@@ -17,7 +17,12 @@ const argv = require('yargs')
       type: 'boolean',
     },
     branch: {
-      describe: 'Override a deployment branch name',
+      describe: 'Pass in a deployment branch name',
+      demandOption: false,
+      type: 'string',
+    },
+    rev: {
+      describe: 'Tag your deployment with a revision sha',
       demandOption: false,
       type: 'string',
     },
@@ -47,6 +52,7 @@ async function deployFrontline(config, branch, rev) {
 
   if (env() === 'development') branch = 'development';
   if (argv.branch) branch = argv.branch
+  if (argv.rev) rev = argv.rev
 
   gutil.log(
     gutil.colors.blue(`[Frontline:${env()}]`),
