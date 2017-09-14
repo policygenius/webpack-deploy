@@ -2,6 +2,12 @@
 Collection of useful utilities for deploying (not only) webpack single-page apps
 to a Frontline server.
 
+## Frontline Deploys
+When you use this script to deploy to a server that accepts frontline deploys.
+
+![System Design](/frontline_deploy.png)
+
+
 ## Installation
 ```
 cd $YOUR_PROJECT
@@ -28,16 +34,6 @@ Google Clould Storage asset upload of build files.
 
 ### Why Bash with Gulp?
 Gulp is great for building, Bash for running tasks.
-
-## TODO
-- init: config copy
-- slack integration
-- github PR deploy notification: https://developer.github.com/changes/2014-01-09-preview-the-new-deployments-api/
-- optional deploy message (for slack)
-- list commits in slack message
-- notification center updates
-- friendlier error messages "Did you forget to ...?"
-- abstract slack notifs into utils
 
 ## License
 MIT

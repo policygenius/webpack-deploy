@@ -1,0 +1,84 @@
+digraph DeployFrontline {
+  label = "Deploying to Frontline"
+  labelloc="t";
+  fontsize = 16
+
+  graph [
+    rankdir = "TB"
+  ];
+
+  node [
+    fontsize = 12
+    shape = plaintext
+  ];
+
+  subgraph cluster1 {
+    label = "Frontline/Redis"
+    deployed_branches
+
+    deployed_branches:f0 -> deployed_revisions:f1
+    deployed_branches:f1 -> deployed_revisions:f0
+    deployed_branches:f2 -> deployed_revisions:f4
+  }
+
+  deploy_request [
+    shape = plaintext
+    label = "{ branch: life-3, \nrevision: f7fc4ac,\n index_html: \"<html>\" }"
+  ]
+
+  frontline_deploy [
+    shape = cylinder
+    label = "frontline_deploy\n(pg_rails)"
+  ]
+
+  deployed_branches [
+    label = "<f0> master | <f1> life-3 | <f2> default | ..."
+    shape = record
+  ];
+
+  deployed_revisions [
+    label = "<f0>  f7fc4... | <f1> sh8a3.. | <f2> p91kw... | <f3> kajfi... | <f4> ij12i... | <f5> adkaso... | ..."
+    shape = record
+  ];
+
+  index_html [
+    shape = note
+    label = "index.html\n <cdn_url/app-mjnc71.css>\n <cdn_url/app-jn12b.js>"
+  ]
+
+  storage [
+    shape = cylinder
+    label = "s3/g-cloud"
+  ]
+
+  CDN [
+    shape = cylinder
+  ]
+
+  app_js [
+    shape = note
+    label = "app-jn12b.js"
+  ]
+
+  app_css [
+    shape = note
+    label = "app-mjnc71.css"
+  ]
+
+  index_html_memory [
+    shape = plaintext
+    label = "<html>\n<cdn_url/app-mjnc71.css>\n<cdn_url/app-jn12b.js>\n</html>"
+  ]
+
+  app_js -> storage
+  app_css -> storage
+
+  storage -> CDN
+  index_html -> CDN
+
+  index_html -> deploy_request -> frontline_deploy
+
+  frontline_deploy -> deployed_branches:f1
+  deployed_revisions:f0  -> index_html_memory
+
+}

@@ -1,0 +1,117 @@
+digraph G {
+  graph [
+    rankdir = "TB"
+  ];
+
+  subgraph cluster1 {
+    label = "Frontline/Redis"
+    deployed_branches
+
+    deployed_branches:f2 -> deployed_revisions:f4
+    deployed_branches:f0 -> deployed_revisions:f0
+    deployed_branches:f1 -> deployed_revisions:f1
+  }
+
+  user [
+    shape = ellipse
+    label = "user\n{ life-3: true }"
+  ]
+
+  frontline_controller [
+    shape = cylinder
+    label = "frontline_controller\n(pg_rails)"
+  ]
+
+  has_split [
+    label = "Has life-3 split?"
+    shape = diamond
+  ]
+
+  deployed_branches [
+    label = "<f0> master | <f1> life-3 | <f2> default | ..."
+    shape = record
+  ];
+
+  deployed_revisions [
+    label = "<f0>  f7fc4... | <f1> sh8a3.. | <f2> p91kw... | <f3> kajfi... | <f4> ij12i... | <f5> adkaso... | ..."
+    shape = record
+  ];
+
+  storage [
+    shape = cylinder
+    label = "s3/g-cloud"
+  ]
+
+  CDN [
+    shape = cylinder
+  ]
+
+  app_js [
+    shape = note
+    label = "app-bg87s.js"
+  ]
+
+  app_css [
+    shape = note
+    label = "app-fc7de.css"
+  ]
+
+  app_2_js [
+    shape = note
+    label = "app-xyz987.js"
+  ]
+
+  app_2_css [
+    shape = note
+    label = "app-ab123.css"
+  ]
+
+  index_html [
+    label = "index.html"
+  ]
+
+  index_html_1 [
+    shape = plaintext
+    label = "<html>\n<cdn_url/app-fc7de.css>\n<cdn_url/app-bg87s.js>\n</html>"
+  ]
+
+  index_html_2 [
+    shape = plaintext
+    label = "<html>\n<cdn_url/app-ab123.css>\n<cdn_url/app-xyz987.js>\n</html>"
+  ]
+
+
+  yes [
+    shape = plaintext
+    label = "yes"
+  ]
+
+  no [
+    shape = plaintext
+    label = "no"
+  ]
+
+  user -> frontline_controller -> has_split
+
+  has_split -> yes -> deployed_branches:f1
+  has_split -> no -> deployed_branches:f2
+
+  deployed_revisions:f1 -> index_html_1
+  deployed_revisions:f5 -> index_html_2
+
+
+  frontline_controller -> index_html -> user
+  /*frontine_controller -> index_html -> user
+  user -> index_html*/
+
+  CDN -> index_html
+
+  CDN -> storage
+  storage -> CDN
+
+  storage -> app_js
+  storage -> app_css
+
+  storage -> app_2_js
+  storage -> app_2_css
+}
