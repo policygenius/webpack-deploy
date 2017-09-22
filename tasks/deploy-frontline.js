@@ -7,7 +7,7 @@ const request = require('request-promise-native');
 const argv = require('yargs')
   .options({
     env: {
-      describe: 'Specify deploy environment',
+      describe: 'Specify deploy environment in output',
       demandOption: false,
       type: 'string',
     },

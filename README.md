@@ -12,15 +12,33 @@ When you use this script to deploy to a server that accepts frontline deploys.
 ```
 cd $YOUR_PROJECT
 npm install --save-dev webpack-frontline
-````
+
+# OR if you use yarn:
+
+yarn add webpack-frontline --dev
+```
 
 ## Configuration
 Copy `deploy-config-example.js` and `secrets-example.js` into the root of your
 project and fit them to your needs.
 Also make sure you have `./node_modules/.bin` in your `$PATH`.
 
-## Use
+## Using with frontline
 Build your Webpack project and run `deploy-frontline`.
+
+`yarn deploy-frontline -- --help` to view available options.
+
+By default, `deploy-frontline` will use the last git commit sha as its revision.
+It will also use `development` as its default branch-name.
+
+** Branches **
+- `--env` is **NOT SET**, it will deploy to a branch named `development`.
+- `--env` is set, it will use its current branch name.
+- `--branch` is set,  it will use the passed in argument as the branch.
+
+** Revisions **
+- `--rev` is  **NOT SET**, it will use the current git revision sha as its revision id.
+- `--rev` is set, it will use the passed in argument as its revision id.
 
 ## Commands
 - `deploy-frontline`
