@@ -89,6 +89,8 @@ async function deployFrontline(config, branch, rev) {
       gutil.colors.red(`Failed to deploy ${branch}(${rev})`),
       argv.debug ? e : 'Use --debug to view errors.',
     );
+
+    throw(e);
   }
 }
 
