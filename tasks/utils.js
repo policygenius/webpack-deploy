@@ -40,11 +40,16 @@ const argv = require('yargs')
       demandOption: false,
       type: 'boolean',
     },
+    config: {
+      describe: 'Specify a config file for the frontline deploy',
+      demandOption: false,
+      type: 'string',
+    },
   })
   .help().argv;
 
 const DEFAULT_ABBREV_LENGTH = 7;
-const CONFIG_FILENAME = 'deploy-config.js';
+const CONFIG_FILENAME = argv.config || 'deploy-config.js';
 const CONFIG_PATHS = [
   path.join(process.cwd(), CONFIG_FILENAME),
   path.join(__dirname, '..', CONFIG_FILENAME),

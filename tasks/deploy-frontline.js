@@ -26,6 +26,11 @@ const argv = require('yargs')
       demandOption: false,
       type: 'string',
     },
+    config: {
+      describe: 'Specify a config file for the frontline deploy',
+      demandOption: false,
+      type: 'string',
+    },
   })
   .help().argv;
 
