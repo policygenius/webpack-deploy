@@ -55,7 +55,7 @@
     "object-assign": "^4.0.1",
     "promise-redis": "^0.0.5",
     "redis": "^0.12.1",
-    "request": "^2.61.0",
+    "request": "^2.88.0",
     "request-promise-native": "^1.0.4",
     "require-dir": "^0.3.2",
     "webpack": "^1.11.0",
@@ -65,7 +65,7 @@
     "babel-eslint": "^7.2.3",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.2.0",
-    "eslint-plugin-import": "^2.6.0",
+    "eslint-plugin-import": "^2.14.0",
     "prettier": "^1.4.4"
   }
 }
