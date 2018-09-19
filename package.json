@@ -1,6 +1,6 @@
 {
   "name": "webpack-frontline",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A fork of webpack-deploy: A Collection of useful utilities for deploying (not only) Webpack apps",
   "main": "index.js",
   "repository": {
