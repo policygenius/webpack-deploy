@@ -103,7 +103,18 @@ async function deployFrontline(config, branch, rev) {
  *  Deploys to a frontline-server
  */
 gulp.task('deploy-frontline', async () => {
-  const rev = await revision.short();
-  const branch = await revision.branch();
-  await deployFrontline(getConfigFor('frontline'), branch, rev);
+  try {
+    const rev = await revision.short();
+    const branch = await revision.branch();
+    await deployFrontline(getConfigFor('frontline'), branch, rev);
+  } catch (e) {
+    gutil.log(
+      gutil.colors.blue(`[Frontline:${env()}]`),
+      gutil.colors.red(`${e.message}`),
+    )
+    gutil.log(
+      gutil.colors.blue(`[Frontline:${env()}]`),
+      argv.debug ? e : gutil.colors.yellow('Use --debug to view full errors.')
+    )
+  }
 });
